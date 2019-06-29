@@ -19,7 +19,6 @@ from IPython.core.debugger import set_trace
 
 class Mosaic:
     
-    MAXDOUBLE =  1.79769313486231e+308
     
     
     @classmethod
@@ -27,10 +26,13 @@ class Mosaic:
         
         #image1_pixels = convert_image_to_array(image1)
         #image2_pixels = convert_image_to_array(image2)
+        start=time.time()
         print('image1:start')
         index1, value1 = self.harrisope(image1)
+
         print('image2:start')        
         index2, value2 = self.harrisope(image2)
+        print(time.time()-start)
 
         
         
@@ -44,7 +46,7 @@ class Mosaic:
         k = 0.04 # 0.04~0.06とか
         list_num = 5 # 奇数がいいなあ
         list_nh = list_num//2
-        point_num = 40 # 特徴点の数
+        point_num = 30 # 特徴点の数
 
         im_list = np.array(imag1)
         im_list = np.sum(im_list, axis=2)/3
@@ -72,10 +74,10 @@ class Mosaic:
 
         feature_value = feature_value[feature_value > feature_sort]
         
-        plt.figure()
-        plt.imshow(im_list)
-        plt.scatter(list(feature_index[1]), list(feature_index[0]))
-        plt.show()
+        #plt.figure()
+        #plt.imshow(im_list)
+        #plt.scatter(list(feature_index[1]), list(feature_index[0]))
+        #plt.show()
 
         
         return feature_index,feature_value
